@@ -8,7 +8,7 @@ const { type } = require('os');
 
 // const { start } = require('repl');
 // const { allowedNodeEnvironmentFlags } = require('process');
-require('console.table');
+const cTable = require('console.table');
 
 
 firstQuestion = function(){
@@ -41,6 +41,9 @@ inquirer.prompt([
             break;
         case "add employee": 
             addEmployee();
+            break;
+        case "update employee role":
+            updateEmployeeRole();
             break;
     }   
 
@@ -97,7 +100,6 @@ addDepartment = function(){
             },
             function (err, res) {
                 if(err) throw err;
-               console.table(department);
             }
         )
     })
@@ -132,7 +134,6 @@ addRole = function(){
             },
             function(err, res) {
                 if (err) throw err;
-                console.log(role);
             }
         )
     })
@@ -156,7 +157,8 @@ addEmployee = function() {
             name: 'roleId',
             message: 'What is the employees role id?'
         }
-    ]) .then (({firstName, lastName, roleId}) => {
+    ]) 
+    .then (({firstName, lastName, roleId}) => {
         const query = connection.query(
             'INSERT INTO employee SET ?',
             {
@@ -167,137 +169,39 @@ addEmployee = function() {
         )
     })
     .then (() => viewEmployee())
+};
+
+updateEmployeeRole = function(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'employeeList',
+            message: 'What is the id of the employee you would like to update?',
+            // choices: ['Virginia Woolf', 'Ronald Firbank', 'Piers Gaveston', 'Charles LeRoi', 'Katherine Mansfield', 'Dora Carrington']
+        }, 
+        {
+            type: 'input',
+            name: 'roleUpdate',
+            message: 'What is the new role id?'
+        },
+        // {
+        //     type: 'input',
+        //     name: 'roleOldId',
+        //     message: 'What is the employee old role id?'
+        // }
+    ]) .then (({roleUpdate, employeeList}) => {
+        'UPDATE employee SET ? WHERE  ?', 
+        [
+            {
+                role_id: roleUpdate
+            },
+            {
+                id: employeeList
+            }
+        ]
+
+    }) .then (() => viewEmployee()) 
+
 }
-
-// addLastName = function() {
-//     inquirer.prompt([
-//         {
-//             type:'input',
-//             name:'firstName',
-//             message: 'Whats the employees last name?'
-//         }
-//     ])
-//     .then (({lastName}) => {
-//         const query = connection.query(
-//             'INSERT INTO employee SET ?',
-//             {
-//                 last_name: lastName
-//             }
-//         )
-//     })
-//     console.log(lastName)
-//     // .then(() => viewEmployee()) 
-
-    
-// }
-    
-//     .then((firstName)=>{
-//         inquirer.prompt([
-//             {
-//                 type: 'input',
-//                 name: 'lastName',
-//                 message:'Whats the employees last name?'
-//             }
-//         ]) .then (({lastName}) =>{
-//             const query = connection.query(
-//                 'INSERT INTO employee SET ?',
-//                 {
-//                     first_name: firstName,
-//                     last_name: lastName
-//                 }
-//             )
-//         })
-//     })
-//     .then((firstName, lastName) => {
-//         const query = connection.query (
-//             'INSERT INTO employee SET ?',
-//             {
-//                 first_name: firstName,
-//                 last_name: lastName,
-//                 role_id: 1
-//             }
-//         )
-//     })
-//     .then(() => viewEmployee())
-// }
-//     .then(() => addLastName(firstName))
-    
-
-// addLastName = function(firstName) {
-//     inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'lastName',
-//             message: 'Whats the employess first name?'
-//         }
-//     ])
-// .then (({firstName, lastName})=>{
-//     'INSERT INTO employee SET ?, ?, ?',
-//     {
-//         first_name: firstName,
-//         last_name: lastName, 
-//         role_id: 1
-//     }
-// })
-// .then(() => viewEmployee())
-// }
-// }
-
 firstQuestion();
 
-
-// addDepartment = function() {
-//     inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'department',
-//             message: 'What department would you like to add?'
-//         }
-//     ])
-//     .then((answer) => {
-//         // const department = new Department (answer.name)
-//         db.addDepartment(answer)
-//     })
-//     .then(([answer]) => {
-//         console.table(answer)
-//     })
-//     .then(() => firstQuestion())
-// };
-
-
-
-    
-// }
-// addRole = function() {
-//     inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'role',
-//             message: 'What role would you like to add?'
-//         }
-//     ])
-//     .then((answer) => {
-//         db.viewRoles(answer);
-
-//     })
-//     .then((row) => {
-//         console.table(row)
-//     })
-//     .then(() => firstQuestion())
-    
-// }
-// firstQuestion();
-
-// addEmployee = function() {
-//     inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'employee',
-//             message: 'What employee would you like to add?'
-//         }
-//     ])
-//     .then(answer => {
-
-//     })
-    
-// }

@@ -19,17 +19,8 @@ class EmployeeDb {
             "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id;"
         )
     }  
-    //  addDepartments() {
-    // return this.connection.promise().query(
-    //     "INSERT INTO department SET ?", department
-    // );
-    // }
 }
-// addRoles() {
-//     return this.connection.promise().query(
-//         "UPDATE candidates SET party_id = ? WHERE id = ?"
-//     )
-// }
+
 
 module.exports = new EmployeeDb (connection);
 
