@@ -17,7 +17,7 @@
 
   ## Usage 
   [employee-tracker example video](https://drive.google.com/file/d/1lI5KeksRQoDtcn4VhJZiEKWoipKufYhM/view)
-  ![Example Employee-Tracker](./scExample.png)
+  ![Example Employee-Tracker](./scExample.PNG)
   
 
   ## Contributions 
