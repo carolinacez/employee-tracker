@@ -16,7 +16,7 @@
   Open mysql and source schema.sql and seeds.sql then run node.js
 
   ## Usage 
-  [employee-tracker example video](https://drive.google.com/file/d/1lI5KeksRQoDtcn4VhJZiEKWoipKufYhM/view)
+  [employee-tracker example video](https://drive.google.com/file/d/1QLK8qBXrZx9AJnZHi-dNkjBvDBtC64Ui/view)
   ![Example Employee-Tracker](./scExample.PNG)
   
 
