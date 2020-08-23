@@ -10,7 +10,7 @@
   * [Questions](#Questions)
 
   ## Description 
-  This app allows you to view and add departments, roles and employees. It is meant to store information and keep information organized for your convinience. 
+  This app allows you to view and add departments, roles and employees. It is meant to store information and keep information organized for your convenience. 
 
   ## Installation
   Open mysql and source schema.sql and seeds.sql then run node.js
